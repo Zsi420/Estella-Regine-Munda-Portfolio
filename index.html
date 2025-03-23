@@ -1,0 +1,2138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Add Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Add new Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #C2BBAA;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: #606B62;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #e0e0e0;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        .section {
+            min-height: 100vh;
+            width: 100%;
+            padding: 0 2rem;
+            box-sizing: border-box;
+            padding-top: 60px;
+        }
+
+        h1, h2 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .content {
+            color: #666;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Remove scroll-snap properties */
+        * {
+            transition: all 0.3s ease;
+        }
+
+        /* Smooth scroll polyfill for better browser support */
+        @media screen and (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        .profile-image {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10rem;
+            padding-left: 6rem;
+            padding-right: 4rem;
+            position: relative;
+            background: linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.8),
+                rgba(255, 255, 255, 0.95)
+            );
+        }
+
+        .home-content {
+            text-align: left;
+            padding-top: 8rem;
+        }
+
+        .home-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.2em;
+            margin-bottom: 2rem;
+            margin-top: -22rem;
+            padding-bottom: 2.5rem;
+            color: #2C3333;
+            letter-spacing: 1px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .home-content p {
+            font-size: 2.2em;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .profession {
+            color: #606B62;
+            font-weight: 500;
+            font-size: 2.2em;
+            margin-bottom: 1.2rem;
+            line-height: 1.4;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .profession:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 15px;
+            height: 2px;
+            background-color: #606B62;
+        }
+
+        .home-content p:first-of-type {
+            font-size: 2.5em;
+            font-weight: 600;
+            color: #2C3333;
+            margin-bottom: 1.5rem;
+        }
+
+        .resume-link {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #606B62;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .resume-link:hover {
+            background-color: #4a534f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        #resume h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            color: #2C3333;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        #resume h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #606B62;
+        }
+
+        #resume .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Apply the same heading style to all sections */
+        #application-letter h2,
+        #job-interview-guides h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            color: #2C3333;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        #application-letter h2:after,
+        #job-interview-guides h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #606B62;
+        }
+
+        .section .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Background design elements */
+        .home-bg-element {
+            position: absolute;
+            z-index: -1;
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: rgba(96, 107, 98, 0.05);
+            top: 20%;
+            left: 5%;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: rgba(96, 107, 98, 0.08);
+            bottom: 15%;
+            right: 10%;
+        }
+
+        .dots-pattern {
+            width: 200px;
+            height: 200px;
+            background-image: radial-gradient(#606B62 1px, transparent 1px);
+            background-size: 10px 10px;
+            opacity: 0.2;
+            top: 30%;
+            right: 15%;
+        }
+
+        /* Add subtle animation to profile image */
+        .profile-image {
+            transition: transform 0.3s ease;
+            border: 8px solid rgba(96, 107, 98, 0.1);
+        }
+
+        .profile-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* Add subtle line decoration */
+        .home-content h1:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: #606B62;
+            margin-top: 20px;
+            opacity: 0.6;
+        }
+
+        /* Resume section styling */
+        #resume {
+            position: relative;
+            background: linear-gradient(
+                to left bottom,
+                rgba(255, 255, 255, 0.9),
+                rgba(96, 107, 98, 0.05)
+            );
+            overflow: hidden;
+        }
+
+        /* Decorative elements */
+        .resume-decoration {
+            position: absolute;
+            z-index: 0;
+        }
+
+        .resume-circle {
+            width: 300px;
+            height: 300px;
+            border: 2px solid rgba(96, 107, 98, 0.1);
+            border-radius: 50%;
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .resume-line {
+            position: absolute;
+            width: 2px;
+            height: 60%;
+            background: linear-gradient(
+                to bottom,
+                rgba(96, 107, 98, 0.1),
+                rgba(96, 107, 98, 0)
+            );
+            left: 100px;
+            top: 20%;
+        }
+
+        /* Enhanced resume link styling */
+        .resume-container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.05),
+                0 1px 8px rgba(0, 0, 0, 0.02);
+            max-width: 600px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .resume-link {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #606B62;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(96, 107, 98, 0.2);
+        }
+
+        .resume-link:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .resume-link:hover:before {
+            left: 100%;
+        }
+
+        /* Corner accents */
+        .resume-corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-color: #606B62;
+            opacity: 0.3;
+        }
+
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-top: 2px solid;
+            border-left: 2px solid;
+        }
+
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 2px solid;
+            border-right: 2px solid;
+        }
+
+        /* Common section styling */
+        #application-letter,
+        #job-interview-guides {
+            position: relative;
+            background: linear-gradient(
+                to left bottom,
+                rgba(255, 255, 255, 0.9),
+                rgba(96, 107, 98, 0.05)
+            );
+            overflow: hidden;
+        }
+
+        /* Container styling for all sections */
+        .content-container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.05),
+                0 1px 8px rgba(0, 0, 0, 0.02);
+            max-width: 600px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        /* Decorative elements */
+        .section-decoration {
+            position: absolute;
+            z-index: 0;
+        }
+
+        .section-decoration.decoration-circle {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .section-decoration.decoration-line {
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0)
+            );
+        }
+
+        /* Alternate circle positions for visual variety */
+        .circle-left {
+            left: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .circle-right {
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .line-left {
+            left: 100px;
+            top: 20%;
+        }
+
+        .line-right {
+            right: 100px;
+            top: 20%;
+        }
+
+        /* Corner accents */
+        .corner-accent {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-color: rgba(96, 107, 98, 0.4);
+            opacity: 0.3;
+        }
+
+        .corner-tl {
+            top: 20px;
+            left: 20px;
+            border-top: 2px solid;
+            border-left: 2px solid;
+        }
+
+        .corner-br {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 2px solid;
+            border-right: 2px solid;
+        }
+
+        /* Update section backgrounds */
+        #home, 
+        #resume, 
+        #application-letter, 
+        #job-interview-guides,
+        #certification {
+            position: relative;
+            background: linear-gradient(
+                to right bottom,
+                rgba(194, 187, 170, 0.3),
+                rgba(194, 187, 170, 0.1)
+            );
+        }
+
+        /* Update container backgrounds */
+        .content-container {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Update decorative elements */
+        .section-decoration.decoration-circle {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .section-decoration.decoration-line {
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.2),
+                rgba(255, 255, 255, 0)
+            );
+        }
+
+        .corner-accent {
+            border-color: rgba(96, 107, 98, 0.4);
+        }
+
+        /* Ensure text remains readable */
+        .home-content h1,
+        #resume h2,
+        #application-letter h2,
+        #job-interview-guides h2,
+        #certification h2 {
+            color: #2C3333;
+            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Adjust contacts section layout */
+        #contacts {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 8rem;
+        }
+
+        #contacts h2 {
+            text-align: center;
+            font-size: 3.5em;  /* Made bigger */
+            margin-bottom: 2rem;  /* Reduced space between heading and container */
+            color: #2C3333;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .contacts-container {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+            margin: 0 auto 4rem auto;  /* Adjusted margins */
+            text-align: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem 0;
+            font-size: 1.2em;
+            color: #2C3333;
+        }
+
+        .contact-item i {
+            margin-right: 1rem;
+            color: #606B62;
+            font-size: 1.5em;
+        }
+
+        .contact-item a {
+            color: #606B62;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #2C3333;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #606B62;
+            color: white;
+            font-size: 0.9em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .interview-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .qa-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid #606B62;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qa-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .qa-box::before {
+            content: 'Q';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 3em;
+            color: rgba(96, 107, 98, 0.1);
+            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .question {
+            color: #2C3333;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(96, 107, 98, 0.1);
+            padding-left: 3rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .answer {
+            color: #606B62;
+            font-size: 1.1em;
+            line-height: 1.8;
+            padding-left: 3rem;
+            position: relative;
+        }
+
+        .answer::before {
+            content: 'A';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.5em;
+            color: #606B62;
+            opacity: 0.4;
+            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Decorative elements */
+        .interview-bg-accent {
+            position: absolute;
+            z-index: -1;
+        }
+
+        .accent-dots {
+            background-image: radial-gradient(#606B62 1px, transparent 1px);
+            background-size: 20px 20px;
+            width: 150px;
+            height: 150px;
+            opacity: 0.1;
+            right: 50px;
+            top: 50px;
+        }
+
+        .accent-circle {
+            width: 200px;
+            height: 200px;
+            border: 2px solid rgba(96, 107, 98, 0.1);
+            border-radius: 50%;
+            left: -100px;
+            bottom: 50px;
+        }
+
+        /* Navigation link styles */
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* Active state for nav links */
+        .nav-links a.active {
+            color: #C2BBAA;
+            font-weight: 600;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: #C2BBAA;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a.active::after {
+            width: 70%;
+        }
+
+        /* Education section styling */
+        .education-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .education-title {
+            font-size: 2.5em;
+            color: #2C3333;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #C2BBAA;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .education-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 3rem;
+            border-left: 3px solid #C2BBAA;
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 13px;
+            height: 13px;
+            background: #C2BBAA;
+            border-radius: 50%;
+        }
+
+        .degree {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #2C3333;
+            margin-bottom: 0.5rem;
+        }
+
+        .school {
+            font-size: 1.2em;
+            color: #606B62;
+            margin-bottom: 0.3rem;
+        }
+
+        .address {
+            font-size: 1em;
+            color: #606B62;
+            margin-bottom: 0.3rem;
+        }
+
+        .year {
+            font-size: 1em;
+            color: #C2BBAA;
+            font-weight: 600;
+        }
+
+        /* Skills section styling */
+        .skills-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .skills-title {
+            font-size: 2.5em;
+            color: #2C3333;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #C2BBAA;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .skills-category {
+            margin-bottom: 2rem;
+        }
+
+        .category-title {
+            font-size: 1.4em;
+            color: #2C3333;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .category-title::before {
+            content: '';
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background: #C2BBAA;
+            margin-right: 1rem;
+            transform: rotate(45deg);
+        }
+
+        .skills-list {
+            padding-left: 2rem;
+        }
+
+        .skill-item {
+            position: relative;
+            margin-bottom: 0.8rem;
+            color: #606B62;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-item::before {
+            content: '•';
+            color: #C2BBAA;
+            font-size: 1.5em;
+            margin-right: 1rem;
+        }
+
+        /* Main Resume heading styling */
+        .resume-main-title {
+            text-align: center;
+            font-size: 4em;
+            color: #2C3333;
+            margin-bottom: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .resume-main-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(
+                to right,
+                transparent,
+                #C2BBAA,
+                transparent
+            );
+        }
+
+        /* Resume section layout */
+        .resume-content {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Adjust containers for side-by-side layout */
+        .education-container {
+            flex: 1;
+            max-width: 600px;
+            margin: 0;
+            height: fit-content;
+        }
+
+        .skills-container {
+            flex: 1;
+            max-width: 600px;
+            margin: 0;
+            height: fit-content;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            .resume-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .education-container,
+            .skills-container {
+                width: 100%;
+                max-width: 800px;
+                margin: 1rem 0;
+            }
+        }
+
+        /* Refined resume link container */
+        .resume-link-container {
+            max-width: 400px;
+            margin: 2rem auto 0;
+            padding: 1.8rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-link-container::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid rgba(96, 107, 98, 0.2);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
+        /* Download text styling */
+        .download-text {
+            font-size: 0.9em;
+            color: #606B62;
+            margin-top: 1rem;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* Enhanced PDF link button */
+        .resume-pdf-link {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: #606B62;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .resume-pdf-link:hover {
+            background-color: #2C3333;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .resume-pdf-link i {
+            margin-right: 10px;
+        }
+
+        /* Download icon animation */
+        .download-icon {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .resume-pdf-link:hover .download-icon {
+            transform: translateY(3px);
+        }
+
+        /* Enhanced Section divider styling */
+        .section-divider {
+            position: relative;
+            height: 120px;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+        }
+
+        .divider-content {
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .divider-line {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(
+                to right,
+                transparent,
+                #C2BBAA,
+                #606B62,
+                #C2BBAA,
+                transparent
+            );
+            position: relative;
+        }
+
+        /* Decorative elements */
+        .divider-ornament {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            border: 3px solid #C2BBAA;
+            background: white;
+        }
+
+        .ornament-left {
+            left: 20%;
+            transform: rotate(45deg);
+        }
+
+        .ornament-right {
+            right: 20%;
+            transform: rotate(45deg);
+        }
+
+        .divider-circle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 3px solid #606B62;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .divider-circle::before {
+            content: '❧';
+            color: #606B62;
+            font-size: 20px;
+        }
+
+        .divider-dots {
+            position: absolute;
+            display: flex;
+            gap: 8px;
+        }
+
+        .divider-dots.left {
+            right: calc(50% + 40px);
+        }
+
+        .divider-dots.right {
+            left: calc(50% + 40px);
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: #C2BBAA;
+            border-radius: 50%;
+        }
+
+        /* Curved lines */
+        .curved-line {
+            position: absolute;
+            width: 100px;
+            height: 50px;
+            border: 2px solid #C2BBAA;
+            border-color: transparent transparent #C2BBAA transparent;
+            border-radius: 0 0 50% 50%;
+        }
+
+        .curved-line.left {
+            left: 30%;
+            transform: rotate(180deg);
+        }
+
+        .curved-line.right {
+            right: 30%;
+        }
+
+        /* My Works section styling */
+        .myworks-main-title {
+            text-align: center;
+            font-size: 4em;
+            color: #2C3333;
+            margin-bottom: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .myworks-main-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(
+                to right,
+                transparent,
+                #C2BBAA,
+                transparent
+            );
+        }
+
+        .myworks-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .myworks-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            height: fit-content;
+        }
+
+        .myworks-title {
+            font-size: 2em;
+            color: #2C3333;
+            margin-bottom: 1.8rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #C2BBAA;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1200px) {
+            .myworks-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Enhanced thesis link styling */
+        .thesis-link {
+            display: block;
+            background: rgba(96, 107, 98, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;  /* Added space between items */
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #2C3333;
+            border: 1px solid rgba(96, 107, 98, 0.1);
+        }
+
+        .thesis-link:last-child {
+            margin-bottom: 0;  /* Remove margin from last item */
+        }
+
+        .thesis-link:hover {
+            background: rgba(96, 107, 98, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .thesis-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+            color: #606B62;
+        }
+
+        .thesis-meta {
+            font-size: 0.9em;
+            color: #C2BBAA;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .thesis-icon {
+            color: #606B62;
+            opacity: 0.8;
+        }
+
+        .download-hint {
+            font-size: 0.85em;
+            color: #606B62;
+            font-style: italic;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+
+        /* Certification container styling */
+        .certification-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
+            height: fit-content;
+        }
+
+        .certification-title {
+            font-size: 2em;
+            color: #2C3333;
+            margin-bottom: 1.8rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #C2BBAA;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .certification-gallery {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: 1fr;
+        }
+
+        .certification-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .certification-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .certification-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .certification-item:hover .certification-image {
+            transform: scale(1.02);
+        }
+
+        /* Optional: Add a subtle overlay on hover */
+        .certification-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0);
+            transition: background 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .certification-item:hover::after {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 1200px) {
+            .myworks-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* New About Me Video Section Styling */
+        .about-video-section {
+            position: relative;
+            padding: 0 0 4rem 0;
+            margin: 2rem auto;
+            max-width: 1400px;
+        }
+
+        .about-video-title {
+            text-align: center;
+            font-size: 4em;
+            color: #2C3333;
+            margin-bottom: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .about-video-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(
+                to right,
+                transparent,
+                #C2BBAA,
+                transparent
+            );
+        }
+
+        .about-video-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .video-box {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .video-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-frame {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-frame video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .video-caption {
+            text-align: center;
+            margin-top: 2rem;
+            color: #606B62;
+            font-size: 1.1em;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            padding: 0 2rem;
+        }
+
+        /* Corner decorations */
+        .about-video-container::before,
+        .about-video-container::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(96, 107, 98, 0.2);
+        }
+
+        .about-video-container::before {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .about-video-container::after {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* Enhanced mobile-friendly styling */
+        @media screen and (max-width: 768px) {
+            /* Adjust main content container */
+            .myworks-content {
+                padding: 0 1rem;
+            }
+
+            /* Adjust container padding */
+            .myworks-container {
+                padding: 1.5rem;
+            }
+
+            /* Adjust title size */
+            .myworks-title {
+                font-size: 1.8em;
+                margin-bottom: 1.5rem;
+            }
+
+            /* Adjust thesis links */
+            .thesis-link {
+                padding: 1.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .thesis-title {
+                font-size: 1em;
+                line-height: 1.4;
+                margin-bottom: 0.8rem;
+            }
+
+            .thesis-meta {
+                font-size: 0.85em;
+                flex-wrap: wrap;
+                gap: 0.3rem;
+            }
+
+            .download-hint {
+                font-size: 0.8em;
+                margin-top: 0.5rem;
+            }
+
+            /* Adjust video container */
+            .video-container {
+                margin: 0 1rem;
+            }
+
+            /* Adjust about section */
+            .about-video-title {
+                font-size: 2.5em;
+                margin-bottom: 2rem;
+            }
+
+            .about-video-container {
+                padding: 2rem 0;
+            }
+
+            .video-caption {
+                font-size: 1em;
+                padding: 0 1.5rem;
+            }
+
+            /* Adjust navigation */
+            .nav-list {
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem;
+            }
+
+            .nav-list li {
+                margin: 0.5rem 0;
+            }
+
+            /* Adjust section spacing */
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Additional adjustments for very small screens */
+        @media screen and (max-width: 480px) {
+            .myworks-title {
+                font-size: 1.5em;
+            }
+
+            .thesis-link {
+                padding: 1rem;
+            }
+
+            .thesis-title {
+                font-size: 0.95em;
+            }
+
+            .thesis-meta {
+                font-size: 0.8em;
+            }
+
+            .about-video-title {
+                font-size: 2em;
+            }
+
+            .video-caption {
+                font-size: 0.9em;
+            }
+        }
+
+        /* Improve touch targets for mobile */
+        @media (hover: none) {
+            .thesis-link {
+                padding: 1.5rem;  /* Larger padding for better touch */
+            }
+
+            .nav-list li a {
+                padding: 0.8rem 1.2rem;  /* Larger touch target */
+            }
+
+            /* Remove hover effects on mobile */
+            .thesis-link:hover {
+                transform: none;
+            }
+
+            /* Add active state for touch feedback */
+            .thesis-link:active {
+                background: rgba(96, 107, 98, 0.15);
+            }
+        }
+    </style>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll function
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Get all sections
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            // Add scroll event listener
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - sectionHeight/3)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                // Update active class on nav links
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Add video scroll handling
+            const video = document.querySelector('video');
+            let videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // If video is not visible, pause it
+                    if (!entry.isIntersecting && !video.paused) {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.5 }); // 50% visibility threshold
+
+            if (video) {
+                videoObserver.observe(video);
+            }
+        });
+
+        // Polyfill for older browsers
+        if (!('scrollBehavior' in document.documentElement.style)) {
+            const smoothScrollPolyfill = document.createElement('script');
+            smoothScrollPolyfill.src = 'https://cdn.jsdelivr.net/npm/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js';
+            document.head.appendChild(smoothScrollPolyfill);
+            
+            smoothScrollPolyfill.onload = function() {
+                window.__forceSmoothScrollPolyfill__ = true;
+                smoothscroll.polyfill();
+            };
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#application-letter">Application Letter</a></li>
+            <li><a href="#job-interview-guides">Job Interview Guides</a></li>
+            <li><a href="#my-works">My Works</a></li>
+            <li><a href="#contacts">Contacts</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section id="home" class="section">
+            <!-- Add background design elements -->
+            <div class="home-bg-element circle-1"></div>
+            <div class="home-bg-element circle-2"></div>
+            <div class="home-bg-element dots-pattern"></div>
+            
+            <img src="images/ESTELLA_REGINE.jpg" alt="Profile Picture" class="profile-image">
+            <div class="home-content">
+                <h1>Welcome to My Portfolio</h1>
+                <p>Hi, I'm ESTELLA REGINE O. MUNDA</p>
+                <p class="profession">Geodetic Engineer</p>
+                <p class="profession">Bachelor of Science in Civil Engineering </p>
+            </div>
+        </section>
+
+        <!-- New About Me Video Section -->
+        <section id="about" class="about-video-section">
+            <h2 class="about-video-title">ABOUT ME</h2>
+            <div class="about-video-container">
+                <div class="video-box">
+                    <div class="video-frame">
+                        <video controls>
+                            <source src="images/Introduction Video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+                <div class="video-caption">
+                    Watch this short introduction to learn more about my background, skills, and aspirations.
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider">
+            <div class="divider-content">
+                <div class="curved-line left"></div>
+                <div class="curved-line right"></div>
+                <div class="divider-line"></div>
+                <div class="divider-ornament ornament-left"></div>
+                <div class="divider-ornament ornament-right"></div>
+                <div class="divider-circle"></div>
+                <div class="divider-dots left">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="divider-dots right">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <section id="resume" class="section">
+            <div class="section-frame"></div>
+            <div class="corner-flourish flourish-top-left"></div>
+            <div class="corner-flourish flourish-top-right"></div>
+            <div class="corner-flourish flourish-bottom-left"></div>
+            <div class="corner-flourish flourish-bottom-right"></div>
+
+            <h1 class="resume-main-title">RESUME</h1>
+
+            <div class="resume-content">
+                <div class="education-container">
+                    <h2 class="education-title">EDUCATION</h2>
+                    
+                    <div class="education-item">
+                        <div class="degree">BS in Geodetic Engineering</div>
+                        <div class="school">Bicol University</div>
+                        <div class="address">Old Albay, Legazpi City</div>
+                        <div class="year">2014-2019</div>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="degree">BS in Civil Engineering</div>
+                        <div class="school">FEU Alabang</div>
+                        <div class="address">Wood District, Corporate Woods cor.<br>
+                        South Corporate Avenues, Filinvest City, Muntinlupa</div>
+                        <div class="year">2023-Present</div>
+                    </div>
+                </div>
+
+                <div class="skills-container">
+                    <h2 class="skills-title">KEY SKILLS / PROFICIENCY</h2>
+                    
+                    <div class="skills-category">
+                        <div class="category-title">Technical Skills</div>
+                        <div class="skills-list">
+                            <div class="skill-item">Land Surveying (GPS, Total Stations, Drones)</div>
+                            <div class="skill-item">Geospatial Data Analysis (GIS & CAD Software)</div>
+                            <div class="skill-item">Construction Site Inspection </div>
+                            <div class="skill-item">Structural Design & Analysis</div>
+                            <div class="skill-item">AutoCAD, Civil 3D, SketchUp, STAAD.Pro</div>
+                            <div class="skill-item">Quantity Estimation & Cost Analysis</div>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <div class="category-title">Soft Skills</div>
+                        <div class="skills-list">
+                            <div class="skill-item">Adaptability & Time Management</div>
+                            <div class="skill-item">Problem Solving & Critical Thinking</div>
+                            <div class="skill-item">Team Coordination</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-link-container">
+                <a href="files/MUNDA Student Resume 2025.pdf" target="_blank" class="resume-pdf-link">
+                    <i class="fas fa-file-pdf"></i>View Resume
+                    <span class="download-icon">
+                        <i class="fas fa-download"></i>
+                    </span>
+                </a>
+                <div class="download-text">Click to view or download the complete resume</div>
+            </div>
+        </section>
+
+        <div class="section-divider">
+            <div class="divider-content">
+                <div class="curved-line left"></div>
+                <div class="curved-line right"></div>
+                <div class="divider-line"></div>
+                <div class="divider-ornament ornament-left"></div>
+                <div class="divider-ornament ornament-right"></div>
+                <div class="divider-circle"></div>
+                <div class="divider-dots left">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="divider-dots right">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <section id="application-letter" class="section">
+            <div class="section-decoration decoration-circle circle-left"></div>
+            <div class="section-decoration decoration-line line-right"></div>
+            
+            <h2>Application Letter</h2>
+            <div class="content-container">
+                <div class="corner-accent corner-tl"></div>
+                <div class="corner-accent corner-br"></div>
+                <p style="color: #606B62; margin-bottom: 1.5rem; font-size: 1.1em;">
+                    View my professional application letter template
+                </p>
+                <a href="files/Application letter.pdf" target="_blank" class="resume-link">
+                    View Application Letter (PDF)
+                </a>
+            </div>
+        </section>
+
+        <div class="section-divider">
+            <div class="divider-content">
+                <div class="curved-line left"></div>
+                <div class="curved-line right"></div>
+                <div class="divider-line"></div>
+                <div class="divider-ornament ornament-left"></div>
+                <div class="divider-ornament ornament-right"></div>
+                <div class="divider-circle"></div>
+                <div class="divider-dots left">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="divider-dots right">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <section id="job-interview-guides" class="section">
+            <div class="interview-bg-accent accent-dots"></div>
+            <div class="interview-bg-accent accent-circle"></div>
+            
+            <h2>Job Interview Guides</h2>
+            <div class="interview-container">
+                <div class="qa-box">
+                    <div class="question">Tell me something about yourself</div>
+                    <div class="answer">
+                        I am a licensed Geodetic Engineer and currently a second-year Civil Engineering 
+                        student at FEU Alabang. I have a background in land surveying, geospatial analysis, 
+                        and construction planning, with hands-on experience using GPS, total stations, 
+                        drones, and GIS software. I am also an active member of PICE and GEP, where I 
+                        continue to expand my knowledge through trainings and competitions. In my 
+                        previous roles, I have worked on topographic surveys, boundary mapping, and 
+                        infrastructure projects, collaborating with engineers, architects, and project 
+                        managers.
+                    </div>
+                </div>
+
+                <div class="qa-box">
+                    <div class="question">Why do you want to work in this industry?</div>
+                    <div class="answer">
+                        I want to work in this industry because I enjoy building and improving 
+                        communities through engineering. As a Geodetic Engineer and Civil Engineering 
+                        student, I've seen how surveying, mapping, and construction come together to 
+                        create safe and efficient projects. This industry is fit for me because it allows me 
+                        to apply my skills, keep learning, and contribute to meaningful projects that help 
+                        people and the environment.
+                    </div>
+                </div>
+
+                <div class="qa-box">
+                    <div class="question">How have your education and professional experiences prepared you for this position?</div>
+                    <div class="answer">
+                        My education and work experience have given me the skills needed for this role. 
+                        I have learned about surveying, mapping, construction planning, and structural 
+                        design. Through my internships and projects, I've gained hands-on experience in 
+                        land surveys, site inspections, and construction work. I have worked with GPS, 
+                        drones, total stations, and CAD software, which are important tools in this field.
+                    </div>
+                </div>
+
+                <div class="qa-box">
+                    <div class="question">Do you plan to continue your education?</div>
+                    <div class="answer">
+                        Yes, I do. I plan to pursue a Master's degree in Geomatics Engineering, 
+                        specializing in Remote Sensing and Photogrammetry. This will help me gain 
+                        deeper knowledge in aerial mapping, satellite imaging, and geospatial data 
+                        analysis. I believe that advanced studies will allow me to improve my skills, keep 
+                        up with new technology, and contribute more to projects in land development 
+                        and infrastructure planning.
+                    </div>
+                </div>
+
+                <div class="qa-box">
+                    <div class="question">Who in your life has influenced you the most and why?</div>
+                    <div class="answer">
+                        The person who has influenced me the most is my aunt, whom I call Mama. She is 
+                        a civil engineer, and growing up, I watched her work hard and overcome challenges 
+                        in her career. Seeing her dedication inspired me to follow the same path in 
+                        engineering. More than that, she has always supported me, provided for my needs, 
+                        and given me the love and care that shaped who I am today. She taught me the 
+                        value of hard work, perseverance, and passion. Because of her, I am motivated to 
+                        work hard and succeed in this field, hoping to make her proud one day.
+                    </div>
+                </div>
+
+                <div class="qa-box">
+                    <div class="question">Give me an example of a time when you were under stress to meet a deadline</div>
+                    <div class="answer">
+                        There was a time when multiple projects piled up, and we had an upcoming document 
+                        inspection. Some files were still unsigned by the contractor, and some certifications and 
+                        bonds were incomplete. We only had a week to finalize everything and submit it to our 
+                        division chief at the construction division. It was a stressful situation, but with the help of 
+                        my colleagues, we organized the documents, followed up on missing requirements, and 
+                        made sure everything was complete. By working together and managing our time well, we 
+                        submitted everything on time. This experience taught me how to stay calm under pressure, 
+                        work well with a team, and handle tight deadlines efficiently.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider">
+            <div class="divider-content">
+                <div class="curved-line left"></div>
+                <div class="curved-line right"></div>
+                <div class="divider-line"></div>
+                <div class="divider-ornament ornament-left"></div>
+                <div class="divider-ornament ornament-right"></div>
+                <div class="divider-circle"></div>
+                <div class="divider-dots left">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="divider-dots right">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <section id="my-works" class="section">
+            <div class="section-frame"></div>
+            <div class="corner-flourish flourish-top-left"></div>
+            <div class="corner-flourish flourish-top-right"></div>
+            <div class="corner-flourish flourish-bottom-left"></div>
+            <div class="corner-flourish flourish-bottom-right"></div>
+
+            <h1 class="myworks-main-title">MY WORKS</h1>
+
+            <div class="myworks-content">
+                <div class="myworks-container">
+                    <h2 class="myworks-title">RESEARCH WORKS</h2>
+                    <a href="files/Thesis 2019.pdf" target="_blank" class="thesis-link">
+                        <div class="thesis-title">
+                            NETWORK-BASED LOCATION ANALYSIS OF THE 4Ps BENEFICIARIES AFFECTED BY THE 2018 MAYON VOLCANO ERUPTION IN GUINOBATAN, ALBAY
+                        </div>
+                        <div class="thesis-meta">
+                            <i class="fas fa-file-pdf thesis-icon"></i>
+                            <span>Undergraduate Thesis, 2019</span>
+                        </div>
+                        <div class="download-hint">Click to view or download PDF</div>
+                    </a>
+
+                    <a href="files/Watermask Topography.pdf" target="_blank" class="thesis-link">
+                        <div class="thesis-title">
+                            WATER MASK USING ENHANCED THEMATIC MAPPER PLUS (ETM+) LANDSAT 7 IN TOPOGRAPHIC MONITORING (LAKE URMIA, IRAN)
+                        </div>
+                        <div class="thesis-meta">
+                            <i class="fas fa-file-pdf thesis-icon"></i>
+                            <span>Research Paper</span>
+                        </div>
+                        <div class="download-hint">Click to view or download PDF</div>
+                    </a>
+
+                    <a href="files/DGLMO (Final).pdf" target="_blank" class="thesis-link">
+                        <div class="thesis-title">
+                            PROPOSED TWO STOREY RESIDENTIAL BUILDING WITH ROOF DECK
+                        </div>
+                        <div class="thesis-meta">
+                            <i class="fas fa-file-pdf thesis-icon"></i>
+                            <span>Building Proposal</span>
+                        </div>
+                        <div class="download-hint">Click to view or download PDF</div>
+                    </a>
+
+                    <a href="files/Environmental Engineering Term Paper- Munda.pdf" target="_blank" class="thesis-link">
+                        <div class="thesis-title">
+                            EFFECTS OF SALINITY ON PLANTAE AND ESTUARY ANIMALS IN ARID AND SEMI-ARID REGIONS
+                        </div>
+                        <div class="thesis-meta">
+                            <i class="fas fa-file-pdf thesis-icon"></i>
+                            <span>Environmental Engineering Term Paper</span>
+                        </div>
+                        <div class="download-hint">Click to view or download PDF</div>
+                    </a>
+                </div>
+
+                <div class="certification-container">
+                    <h2 class="certification-title">CERTIFICATIONS</h2>
+                    <div class="certification-gallery">
+                        <div class="certification-item" onclick="openModal('images/Certificate.jpg')">
+                            <img src="images/Certificate.jpg" alt="Professional Certification" class="certification-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider">
+            <div class="divider-content">
+                <div class="curved-line left"></div>
+                <div class="curved-line right"></div>
+                <div class="divider-line"></div>
+                <div class="divider-ornament ornament-left"></div>
+                <div class="divider-ornament ornament-right"></div>
+                <div class="divider-circle"></div>
+                <div class="divider-dots left">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="divider-dots right">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <section id="contacts" class="section">
+            <div class="section-frame"></div>
+            <div class="corner-flourish flourish-top-left"></div>
+            <div class="corner-flourish flourish-top-right"></div>
+            <div class="corner-flourish flourish-bottom-left"></div>
+            <div class="corner-flourish flourish-bottom-right"></div>
+            
+            <h2>Contact Me:</h2>
+            <div class="contacts-container">
+                <div class="corner-accent corner-tl"></div>
+                <div class="corner-accent corner-br"></div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:stellamunda08@gmail.com">stellamunda08@gmail.com</a>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+639055211797">+63 905 5211 797</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        © Made with Love by Aljhon Viado <3 2025
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img src="" alt="Certificate Full View" class="modal-image" onclick="event.stopPropagation()">
+        </div>
+    </div>
+
+    <script>
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = modal.querySelector('.modal-image');
+            modalImage.src = imageSrc;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html> 
